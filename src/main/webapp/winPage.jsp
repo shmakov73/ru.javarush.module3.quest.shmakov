@@ -1,10 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Руслан
-  Date: 12.11.2022
-  Time: 18:55
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="org.slf4j.Logger" %>
+<%@ page import="org.slf4j.LoggerFactory" %>
+<%@ page import="ru.javarush.controller.AddUserServlet" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -12,7 +8,9 @@
 </head>
 <body>
 <p><%= request.getAttribute("winPhrase")%></p>
+<% Logger logger = LoggerFactory.getLogger(AddUserServlet.class); %>
 <form action="${pageContext.request.contextPath}/AddUserServlet" method="get">
+    <% logger.info("User {} is win", request.getSession().getAttribute("userName"));%>
     <input type="submit" id="restart" name="answer" value="start"/>
 </form>
 </body>

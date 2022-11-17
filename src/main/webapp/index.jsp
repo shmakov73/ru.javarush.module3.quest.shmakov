@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>JSP - Hello World</title>
+    <title>Quest</title>
 
 </head>
 <body>

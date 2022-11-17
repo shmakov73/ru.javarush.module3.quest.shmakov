@@ -1,6 +1,9 @@
 package ru.javarush.controller;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +15,7 @@ import java.io.IOException;
 
 @WebServlet(name = "AddUserServlet", value = "/AddUserServlet")
 public class AddUserServlet extends HttpServlet {
+    private static final Logger logger = LoggerFactory.getLogger(AddUserServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,6 +33,7 @@ public class AddUserServlet extends HttpServlet {
         }else {
 
         session.setAttribute("userName", userName);
+        logger.info("added new user: {}", userName);
             session.setAttribute("gameCount", 0);
         }
 

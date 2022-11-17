@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="INFO">
+    <Appenders>
+        <RollingFile name = "LogToFile" fileName = "logs/quest.log"
+                     filePattern = "logs/quest.%d{yyyy-MM-dd}.log"
+                        ignoreExceptions = "false">
+            <PatternLayout pattern = "%d %-5p %c: %m%n"/>
+            <TimeBasedTriggeringPolicy />
+            <DeafultRolloverStrategy>
+                    <Delete basePath="logs" maxDepth="2">
+                        <IfFileName glob="quest.*.log" />
+                        <IfLastModified age="7d" />
+                    </Delete>
+            </DeafultRolloverStrategy>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="ALL">
+            <AppenderRef ref="LogToFile"/>
+        </Root>
+    </Loggers>
+</Configuration>

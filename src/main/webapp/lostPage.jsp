@@ -1,4 +1,6 @@
-<%--
+<%@ page import="org.slf4j.Logger" %>
+<%@ page import="org.slf4j.LoggerFactory" %>
+<%@ page import="ru.javarush.controller.AddUserServlet" %><%--
   Created by IntelliJ IDEA.
   User: Руслан
   Date: 12.11.2022
