@@ -1,6 +1,6 @@
 package ru.javarush.controller;
 
-import ru.javarush.model.Quest;
+import ru.javarush.model.Logic;
 import ru.javarush.model.Question;
 
 import javax.servlet.RequestDispatcher;
@@ -14,29 +14,28 @@ import java.io.IOException;
 @WebServlet(name = "QuestServlet", value = "/QuestServlet")
 public class QuestServlet extends HttpServlet {
 
-    Quest quest;
+    Logic logic;
 
     @Override
     public void init(){
-        quest = new Quest();
-        quest.addQuestionsToList();
+        logic = new Logic();
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String answer = request.getParameter("answer");
 
 
-        if (quest.isNoAnswer(answer) != null){
+        if (logic.isNoAnswer(answer) != null){
             RequestDispatcher dispatcher = request.getRequestDispatcher("/lostPage.jsp");
-            request.setAttribute("defeatPhrase", quest.isNoAnswer(answer));
+            request.setAttribute("defeatPhrase", logic.isNoAnswer(answer));
             dispatcher.forward(request, response);
         }
-        else if (quest.isWinAnswer(answer) != null){
+        else if (logic.isWinAnswer(answer) != null){
             RequestDispatcher dispatcher = request.getRequestDispatcher("/winPage.jsp");
-            request.setAttribute("winPhrase", quest.isWinAnswer(answer));
+            request.setAttribute("winPhrase", logic.isWinAnswer(answer));
             dispatcher.forward(request, response);
         }
         else {
-            Question newQuestion = quest.getNewQuestion(answer);
+            Question newQuestion = logic.getNewQuestion(answer);
             request.setAttribute("question", newQuestion.getQuestion());
             request.setAttribute("defeatMessage", newQuestion.getDefeatMessage());
 

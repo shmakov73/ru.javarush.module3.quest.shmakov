@@ -27,9 +27,11 @@
     </div>
 </form>
 
+<div id="stat">
 <p>Имя игрока: <%= request.getSession().getAttribute("userName")%></p>
 <p>IP - адрес: <%= request.getSession().getAttribute("IPAddress")%></p>
 <p>Количество сыгранных игр: <%= request.getSession().getAttribute("gameCount")%></p>
+</div>
 
 </body>
 </html>
