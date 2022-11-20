@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link href="style.css" rel="stylesheet">
 <!DOCTYPE html>
 <html>
@@ -9,7 +10,7 @@
 </head>
 <body>
 <h1><%= "Hello, " + request.getSession().getAttribute("userName") + "!"%></h1>
-<p><p><%= request.getAttribute("question")%></p>
+<p><p><c:out value="${sessionScope.userName}"></c:out>, <c:out value="${requestScope.question}"></c:out></p></p>
 
 <form action="${pageContext.request.contextPath}/QuestServlet" method="get">
 
@@ -28,9 +29,11 @@
 </form>
 
 <div id="stat">
-<p>Имя игрока: <%= request.getSession().getAttribute("userName")%></p>
-<p>IP - адрес: <%= request.getSession().getAttribute("IPAddress")%></p>
-<p>Количество сыгранных игр: <%= request.getSession().getAttribute("gameCount")%></p>
+    <p>Статистика:</p>
+    <p>Имя игрока: <c:out value="${sessionScope.userName}"></c:out></p>
+    <p>IP - адрес: <c:out value="${sessionScope.IPAddress}"></c:out></p>
+    <p>Количество сыгранных игр: <c:out value="${sessionScope.gameCount}"></c:out></p>
+    <p>Количество побед: <c:out value="${sessionScope.winCount}"></c:out></p>
 </div>
 
 </body>

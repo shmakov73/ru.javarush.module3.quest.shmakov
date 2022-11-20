@@ -35,6 +35,7 @@ public class AddUserServlet extends HttpServlet {
         session.setAttribute("userName", userName);
         logger.info("added new user: {}", userName);
             session.setAttribute("gameCount", 0);
+            session.setAttribute("winCount", 0);
         }
 
         String remoteAddr = request.getRemoteAddr();

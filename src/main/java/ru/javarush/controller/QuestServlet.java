@@ -38,6 +38,7 @@ public class QuestServlet extends HttpServlet {
         }
         else if (logic.isWinAnswer(answer) != null){
             RequestDispatcher dispatcher = request.getRequestDispatcher("/winPage.jsp");
+            request.getSession().setAttribute("winCount", (int)(request.getSession().getAttribute("winCount")) + 1);
             request.setAttribute("winPhrase", logic.isWinAnswer(answer));
             dispatcher.forward(request, response);
             logger.info("User {} won", request.getSession().getAttribute("userName"));
