@@ -19,6 +19,7 @@ class LogicTest {
         assertThat(logic.getNewQuestion("Принять вызов?")).isNotNull();
         assertThat(logic.getNewQuestion("Подняться на мостик")).isNotNull();
 
+        assertThat(logic.getNewQuestion(null).getYesAnswer()).isEqualTo("Принять вызов?");
         assertThat(logic.getNewQuestion("start").getYesAnswer()).isEqualTo("Принять вызов?");
         assertThat(logic.getNewQuestion("Принять вызов?").getYesAnswer()).isEqualTo("Подняться на мостик");
         assertThat(logic.getNewQuestion("Подняться на мостик").getYesAnswer()).isEqualTo("Рассказать о себе правду");
@@ -56,4 +57,5 @@ class LogicTest {
     void isWinAnswerTest_Should_Return_Null(){
         assertThat(logic.isWinAnswer("любой другой текст")).isNull();
     }
+
 }
