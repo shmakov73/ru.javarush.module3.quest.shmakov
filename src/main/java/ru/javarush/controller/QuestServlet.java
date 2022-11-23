@@ -2,7 +2,7 @@ package ru.javarush.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.javarush.model.Logic;
+import ru.javarush.model.LogicService;
 import ru.javarush.model.Question;
 
 import javax.servlet.RequestDispatcher;
@@ -17,44 +17,46 @@ import java.io.IOException;
 public class QuestServlet extends HttpServlet {
 
     private static final Logger logger = LoggerFactory.getLogger(QuestServlet.class);
-    Logic logic;
+    LogicService logicService;
 
     @Override
     public void init(){
-        logic = new Logic();
+        logicService = new LogicService();
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String answer = request.getParameter("answer");
+        request.getSession().setAttribute("answer", request.getParameter("answer"));
+        String answer = (String) request.getSession().getAttribute("answer");
+
         if (answer != null && !answer.equals("start")){
             logger.info("User {} answers a question \"{}\"", request.getSession().getAttribute("userName"), answer);
         }
 
-        if (logic.isNoAnswer(answer) != null){
+        if (logicService.isNoAnswer(answer) != null){
             RequestDispatcher dispatcher = request.getRequestDispatcher("/lostPage.jsp");
-            request.setAttribute("defeatPhrase", logic.isNoAnswer(answer));
+            request.setAttribute("defeatPhrase", logicService.isNoAnswer(answer));
             dispatcher.forward(request, response);
             logger.info("User {} lost", request.getSession().getAttribute("userName"));
 
         }
-        else if (logic.isWinAnswer(answer) != null){
+        else if (logicService.isWinAnswer(answer) != null){
             RequestDispatcher dispatcher = request.getRequestDispatcher("/winPage.jsp");
             request.getSession().setAttribute("winCount", (int)(request.getSession().getAttribute("winCount")) + 1);
-            request.setAttribute("winPhrase", logic.isWinAnswer(answer));
+            request.setAttribute("winPhrase", logicService.isWinAnswer(answer));
             dispatcher.forward(request, response);
             logger.info("User {} won", request.getSession().getAttribute("userName"));
         }
         else {
-            Question newQuestion = logic.getNewQuestion(answer);
-            request.setAttribute("question", newQuestion.getQuestion());
+            Question newQuestion = logicService.getNewQuestion(answer);
+            request.getSession().setAttribute("question", newQuestion.getQuestion());
             request.setAttribute("defeatMessage", newQuestion.getDefeatMessage());
 
             if (Math.random() > 0.5){
-                request.setAttribute("answer1", newQuestion.getYesAnswer());
-                request.setAttribute("answer2", newQuestion.getNoAnswer());
+                request.getSession().setAttribute("answer1", newQuestion.getYesAnswer());
+                request.getSession().setAttribute("answer2", newQuestion.getNoAnswer());
             }
             else {
-                request.setAttribute("answer2", newQuestion.getYesAnswer());
-                request.setAttribute("answer1", newQuestion.getNoAnswer());
+                request.getSession().setAttribute("answer2", newQuestion.getYesAnswer());
+                request.getSession().setAttribute("answer1", newQuestion.getNoAnswer());
             }
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");

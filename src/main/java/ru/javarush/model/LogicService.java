@@ -2,7 +2,7 @@ package ru.javarush.model;
 
 import java.util.HashMap;
 
-public class Logic {
+public class LogicService {
 
 
     private final Quest quest = new Quest();

@@ -26,7 +26,6 @@ public class AddUserServlet extends HttpServlet {
 
         Object userName = request.getParameter("name");
         if (userName == null){
-            userName = session.getAttribute("name");
             int gameCount = (int) session.getAttribute("gameCount");
             session.setAttribute("gameCount", gameCount + 1);
 
