@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.*" %>
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Quest</title>
@@ -23,7 +23,7 @@
 </c:if>
 
     <h1 class="position-absolute top-10 start-50 translate-middle"><%= "Привет, " + request.getSession().getAttribute("userName") + "!"%></h1>
-<p><p><c:out value="${sessionScope.userName}"></c:out>, <c:out value="${sessionScope.question}"></c:out></p></p>
+<p><p><c:out value="${sessionScope.userName}">userName</c:out>, <c:out value="${sessionScope.question}">question</c:out></p>
 
 <form class="border" action="${pageContext.request.contextPath}/QuestServlet" method="get">
 
@@ -48,17 +48,17 @@
         int n = rand.nextInt(10);
         System.out.println(n);
     %>
-        <img src="${pageContext.request.contextPath}/gif/<%=n%>.gif" class="rounded mx-auto d-block">
+        <img src="${pageContext.request.contextPath}/gif/<%=n%>.gif" class="rounded mx-auto d-block" alt="picture">
     </div>
 
 <div class="bottom" >
     <div class="text-bg-secondary p-4">
         <div class="border">
             <p>Статистика:</p>
-            <p>Имя игрока: <c:out value="${sessionScope.userName}"></c:out></p>
-            <p>IP - адрес: <c:out value="${sessionScope.IPAddress}"></c:out></p>
-            <p>Количество сыгранных игр: <c:out value="${sessionScope.gameCount}"></c:out></p>
-            <p>Количество побед: <c:out value="${sessionScope.winCount}"></c:out></p>
+            <p>Имя игрока: <c:out value="${sessionScope.userName}">userName</c:out></p>
+            <p>IP - адрес: <c:out value="${sessionScope.IPAddress}">IPAddress</c:out></p>
+            <p>Количество сыгранных игр: <c:out value="${sessionScope.gameCount}">gameCount</c:out></p>
+            <p>Количество побед: <c:out value="${sessionScope.winCount}">winCount</c:out></p>
         </div>
     </div>
 </div>

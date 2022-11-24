@@ -18,7 +18,7 @@ public class AddUserServlet extends HttpServlet {
     private static final Logger logger = LoggerFactory.getLogger(AddUserServlet.class);
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("text/html;charset=UTF-8");
 
         HttpSession session = request.getSession();
@@ -42,7 +42,11 @@ public class AddUserServlet extends HttpServlet {
         session.setAttribute("IPAddress", remoteAddr);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/QuestServlet");
-        dispatcher.forward(request, response);
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            logger.error(e.toString());
+        }
 
     }
 }

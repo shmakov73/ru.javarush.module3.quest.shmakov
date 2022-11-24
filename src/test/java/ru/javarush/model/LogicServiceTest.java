@@ -11,7 +11,7 @@ class LogicServiceTest {
 
     @BeforeEach
     public void setUp(){
-        this.logicService = new LogicService();
+        this.logicService = new LogicService(new Quest());
     }
 
     @Test

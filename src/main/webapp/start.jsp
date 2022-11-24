@@ -1,6 +1,7 @@
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<!DOCTYPE html>
+<html lang="ru">
 <head>
     <title>Представься</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,11 +24,13 @@
 
     </p>
     <div >
-        <img src="${pageContext.request.contextPath}/gif/4519285.gif" class="rounded mx-auto d-block">
+        <img src="${pageContext.request.contextPath}/gif/4519285.gif" class="rounded mx-auto d-block" alt="picture">
     </div>
-<form name="addUser" method="get" action="/AddUserServlet">
-  <b>Представься:</b><br>
-    <input type = "text" name = "name">
+<form name="addUser" method="get" action="AddUserServlet">
+  <p>Представься:</p><br>
+    <label>
+        <input type = "text" name = "name">
+    </label>
     <input type="submit" value="отправить">
     </form>
 </div>

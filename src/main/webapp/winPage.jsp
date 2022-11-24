@@ -1,8 +1,9 @@
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.*" %>
-<html>
+<!DOCTYPE html>
+<html lang="ru">
 <head>
     <title>Ты победил!</title>
 
@@ -14,7 +15,7 @@
 <body class="container py-5">
 <div class="text-bg-light p-3">
 <h1 class="position-absolute top-10 start-50 translate-middle">Поздравляю, </h1>
-<p><p><c:out value="${sessionScope.userName}"></c:out>, <c:out value="${requestScope.winPhrase}"></c:out></p></p>
+<p><p><c:out value="${sessionScope.userName}">userName</c:out>, <c:out value="${requestScope.winPhrase}">winPhrase</c:out></p>
 <form action="${pageContext.request.contextPath}/AddUserServlet" method="get">
     <p>Для того, чтобы провторить игру, нажми "start"</p>
     <input class="btn btn-primary" type="submit" id="restart" name="answer" value="start"/>
@@ -26,7 +27,7 @@
         int n = rand.nextInt(10);
         System.out.println(n);
     %>
-    <img src="${pageContext.request.contextPath}/gif/<%=n%>.gif" class="rounded mx-auto d-block">
+    <img src="${pageContext.request.contextPath}/gif/<%=n%>.gif" class="rounded mx-auto d-block" alt="picture">
 </div>
 
 
@@ -34,10 +35,10 @@
     <div class="text-bg-secondary p-4">
         <div class="border">
             <p>Статистика:</p>
-            <p>Имя игрока: <c:out value="${sessionScope.userName}"></c:out></p>
-            <p>IP - адрес: <c:out value="${sessionScope.IPAddress}"></c:out></p>
-            <p>Количество сыгранных игр: <c:out value="${sessionScope.gameCount}"></c:out></p>
-            <p>Количество побед: <c:out value="${sessionScope.winCount}"></c:out></p>
+            <p>Имя игрока: <c:out value="${sessionScope.userName}">Name</c:out></p>
+            <p>IP - адрес: <c:out value="${sessionScope.IPAddress}">IPAddress</c:out></p>
+            <p>Количество сыгранных игр: <c:out value="${sessionScope.gameCount}">gameCount</c:out></p>
+            <p>Количество побед: <c:out value="${sessionScope.winCount}">winCount</c:out></p>
         </div>
     </div>
 </div>
